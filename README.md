@@ -1,7 +1,7 @@
-<H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
+<H3>ENTER YOUR NAME: MUKESH KUMAR S</H3>
+<H3>ENTER YOUR REGISTER NO: 212223240099</H3>
 <H3>EX. NO.1</H3>
-<H3>DATE</H3>
+<H3>DATE: 21.08.2025</H3>
 <H1 ALIGN =CENTER> Introduction to Kaggle and Data preprocessing</H1>
 
 ## AIM:
@@ -37,11 +37,94 @@ STEP 5:Normalizing the data<BR>
 STEP 6:Splitting the data into test and train<BR>
 
 ##  PROGRAM:
-TYPE YOUR CODE HERE
+```
+import pandas as pd
+import io
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
+
+#Read the dataset from drive
+df=pd.read_csv("Churn_Modelling.csv")
+
+# Checking Data
+df.head()
+df.tail()
+df.columns
 
 
+# Finding Missing 
+df.isnull().sum()
+
+#Handling Missing values
+df.fillna(method='ffill',inplace=True)
+
+#Check for Duplicates
+df.duplicated()
+
+#Detect Outliers
+df.describe()
+
+#Normalize the dataset
+data = df.drop(['Surname', 'Geography','Gender'], axis=1)
+scaler=MinMaxScaler()
+df1=pd.DataFrame(scaler.fit_transform(data))
+print(df1)
+
+#split the dataset into input and output
+X=df1.iloc[:,:-1].values
+y=df.iloc[:,-1].values
+print(X)
+print(y)
+
+#splitting the data for training & Testing
+x_train,x_test,y_train,y_test=train_test_split(X,y,test_size=0.3)
+
+#Print the training data and testing data
+print("X_train")
+print(x_train)
+print("Length of X_train",len(x_train))
+print("X_test")
+print(x_test)
+print("Length of X_test",len(x_test))
+```
 ## OUTPUT:
-SHOW YOUR OUTPUT HERE
+
+ Data checking:
+ 
+<img width="509" height="71" alt="image" src="https://github.com/user-attachments/assets/202de1e5-4b74-4eeb-be79-275ecfe9fd6a" />
+
+Missing Data:
+
+<img width="163" height="218" alt="image" src="https://github.com/user-attachments/assets/cedf6c9c-da28-4767-9487-dee1d212ea83" />
+
+Duplicates identification:
+
+<img width="179" height="180" alt="image" src="https://github.com/user-attachments/assets/ab1a620b-b7b9-45ee-a9ac-13b486e37643" />
+
+Vakues of 'Y':
+
+<img width="196" height="33" alt="image" src="https://github.com/user-attachments/assets/b3053c85-743a-486d-a9ac-5130ed31bb95" />
+
+Outliers:
+
+<img width="1036" height="243" alt="image" src="https://github.com/user-attachments/assets/6d6e54b8-a17a-4386-80de-309d6ef242c9" />
+
+Checking datasets after dropping string values data from dataset:
+
+<img width="906" height="174" alt="image" src="https://github.com/user-attachments/assets/aceca48e-1216-4549-80d9-34868c9dd32c" />
+
+Normalize the dataset:
+
+<img width="513" height="385" alt="image" src="https://github.com/user-attachments/assets/e94733bb-5bb5-4ac6-a233-ecea7773b0c1" />
+
+Split the dataset:
+
+<img width="301" height="128" alt="image" src="https://github.com/user-attachments/assets/c973bd0e-8eb7-400e-a0e6-7334b09c2d02" />
+
+Training and testing model:
+
+<img width="343" height="339" alt="image" src="https://github.com/user-attachments/assets/f751ae87-0f89-4c1e-bd7f-14154804d033" />
 
 
 ## RESULT:
